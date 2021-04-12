@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="app">
+  {{message}} <br>
+  br 换行 hr 插入新的一条线
+  <hr>
+  idea在当前行快速插入新的一行使用shift + enter
+  <h2>你好啊 {{mes}}</h2>
+
+  <h2>mustache语法：不仅可以直接写变量，还能写一些简单的变量表达式</h2>
+  <h2>{{firstname}} {{lastname}}</h2>
+  <h2>{{firstname + lastname}}</h2>
+  <h2>{{firstname + '' + lastname}}</h2>
+
+  <h2>{{message + 100}}</h2>
+  <h2>{{message * 2}}</h2>
+
+  <h2>v-once指令，当在console中使mes发生改变时候，内容不变</h2>
+  <h2 v-once>{{mes}}</h2>
+
+  <h2>v-html指令，以html格式展示内容</h2>
+  <h2>{{url}}</h2>
+  <h2 v-html="url"></h2>
+
+  <h2>v-text指令，指明test类型</h2>
+  <h3>{{mes}}, 你这个笨蛋</h3>
+  <h3 v-text="mes">, 你这个笨蛋</h3>
+
+  <h2>v-pre指令：将内容原封不动的显示出来</h2>
+  <h3 v-pre>{{mes}}</h3>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      message: 0,
+      mes: '你好呀',
+      firstname: 'lonus',
+      lastname: 'lan',
+      url: '<a href="https://lonuslan.com"> Lonuslan的个人网站 </a>'
+    }
+  })
+</script>
+</body>
+</html>

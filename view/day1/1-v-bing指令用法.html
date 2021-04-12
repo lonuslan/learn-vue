@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+  .light{
+    color: red;
+  }
+</style>
+<div class="app">
+  {{message}}
+
+  <br>
+  <h2>v-bind指令的用法
+  对标签的属性值做动态的修改
+  </h2>
+
+  <a href="{{link}}"></a>
+  <a href="link"></a>
+  以上两种写法都是错误的
+  mustache语法只能用在标签外面，不能用在标签内部去替换标签的属性
+  <br>
+  <a v-bind:href="link">我的个人网站</a>
+
+  <h2>语法糖写法：简单写法</h2>
+  <a :href="link">我的个人网站</a>
+
+  <h2>应用：改变class的值，获取不同的展示效果</h2>
+  <h3>当isLight为true时才显示对应的key的值</h3>
+  <h3 :class = "{light: isLight, dark: isDark}">{{mes}}</h3>
+  <button v-on:click="bianse">点击</button>
+  <h3>还可以使用以下的方法</h3>
+  <h3 :class="getClass()">{{mes}}</h3>
+
+
+  <h2>点击列表的哪一项，哪一项就变色</h2>
+  <ul>
+    <li :class="getLight(index)" v-for="{item, index} in movies">{{item}}</li>
+
+  </ul>
+
+  <h2>v-bind动态绑定style（对象语法）</h2>
+<!--  <h3 :style = "{key: value}">{{mes}}</h3>-->
+  <h2>value的值需要加上单引号，如不加，会被认为是变量，从而style失效</h2>
+  <h3 :style = "{color: 'red'}">{{mes}}</h3>
+  <h3 :style = "{color: red}">{{mes}}</h3>
+
+  <h2>v-bind动态绑定style(数组语法)</h2>
+  <h3 :style="[stylecolor, stylesize]">{{mes}}</h3>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      message: 0,
+      link: 'https://lonuslan.com',
+      // light: 'light',
+      // dark: 'dark',
+      isLight: true,
+      isDark: true,
+      mes: '测试变色',
+      movies: ['我是电影以', '打得赢不', '你有修补', '我好菜呀'],
+      red: 'red',
+      stylecolor: {color: 'blue'},
+      stylesize: {fontSize: '20px'}
+    },
+    methods:{
+      bianse: function () {
+        this.isLight = !this.isLight
+      },
+      getClass: function () {
+        return {light: this.isLight, dark: this.isDark}
+      },
+      getLight: function () {
+        return 'light'
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
