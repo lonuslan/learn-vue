@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div class="app">
+  {{message}}
+  <br>
+
+  <h2>计算属性的set 和 get 方法细节</h2>
+  <h3>{{fullName}}</h3>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      message: 0,
+      firstName: 'lonus',
+      lastName: 'lan'
+    },
+    computed: {
+      //计算属性会自动调用其内部的set 和 get方法
+      //set 用于设置传入的参数值， 而 get 用于获取并输出设置的值
+      fullName: {
+        set: function (newValue) {
+          //在console中使用app.fullName = 'lonus he',就可以查看打印的获取到的传入的值
+          console.log('获取的值为:' + newValue)
+          let strlist = newValue.split(' ')
+          this.firstName = strlist[0]
+          this.lastName = strlist[1]
+        },
+        get: function () {
+          return this.firstName + ' ' + this.lastName
+        }
+        //但是在使用计算属性时，一般都是在使用get 属性，所以可以直接简写成
+        // get: function () {
+        //   return this.firstName + ' ' + this.lastName
+        // }
+      }
+
+    }
+  })
+</script>
+
+</body>
+</html>

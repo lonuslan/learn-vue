@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="app">
+
+  在遍历时没有使用数组的下标
+  <br>
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+  <br>
+  在遍历时使用数组的下标
+  (1,2) 第一个位置获取的是值，第二个位置获取的是下标
+  <br>
+  <ul>
+    <li v-for="(item, index) in names">{{index + 1}} - {{item}}</li>
+    <li v-for="(index, item) in names">{{item + 1}} - {{index}}</li>
+  </ul>
+
+  <br>
+  遍历对象
+  <br>
+  在遍历对象时，如果只获取一个值，那么这个值是value.
+  <ul>
+    <li v-for="item in info">{{item}}</li>
+  </ul>
+  <br>
+  如果该对象是对象数组，且遍历时也只获取一个值，那么该值是单个的对象.
+  <ul>
+    <li v-for="item in infos">{{item}}</li>
+  </ul>
+  <br>
+  获取两个数据时： (1, 2, 3) --> (value(值), key(键), index(下标))
+  <br>
+  <ul>
+    <li v-for="(value, key) in info">{{key}} : {{value}}</li>
+  </ul>
+  数组对象时
+  <br>
+  <ul>
+    <li v-for="(value, key) in infos">{{key}} : {{value}}</li>
+  </ul>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      names: ['lonus', 'lan', 'james', 'sdan'],
+      infos: [{
+        name: 'lonuslan',
+        age: 23,
+        gender: 'male'
+      },
+        {
+          name: 'hexuan',
+          age: 24,
+          gender: 'female'
+        }
+      ],
+      info: {
+        name: 'lonuslan',
+        age: 23,
+        gender: 'male'
+      }
+    }
+  })
+</script>
+</body>
+</html>

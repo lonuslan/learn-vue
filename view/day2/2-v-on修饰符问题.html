@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div class="app">
+
+  1. .stop修饰符的使用
+  <hr>
+  当使用修饰符，点击下面的btn，div的点击事件也会响应
+  <hr>
+  <div style="background-color: red" v-on:click="div">
+    我是DIV
+    <button @click="btn">按钮</button>
+  </div>
+
+  <hr>
+  使用.stop修饰符，方式冒泡传递
+  <hr>
+  <div style="background-color: red" v-on:click="div">
+    我是DIV
+    <button @click.stop="btn">按钮</button>
+  </div>
+
+  <hr>
+  2. .prevent修饰符的使用
+  <hr>
+  阻止默认提交事件
+  <hr>
+  <form action="tijiao">
+    <input type="submit" value="neirong" @click="input">
+  </form>
+  <hr>
+  对比一下，加了.prevent
+  <hr>
+  <form action="tijiao">
+    <input type="submit" value="neirong" @click.prevent="input">
+  </form>
+
+  <hr>
+  3. 监听键盘的键帽的动作
+  <hr>
+  keyup 键帽抬起时候的动作
+  <hr>
+  抬起
+  <input type="text" @keyup="keyup">
+  <hr>
+  按下
+  <input type="text" @keydown="keydown">
+  <hr>
+  按压
+  <input type="text" @keypress="keypress">
+  <hr>
+  监听enter键
+  <input type="text" @keyup.enter="keyup">
+  <hr>
+  4. .once只触发一次方法， 使用如 ： @click.once = '***'
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+
+    },
+    methods: {
+
+      btn(){
+        console.log("btn");
+      },
+      div(){
+        console.log("div.log");
+      },
+      input(){
+        console.log("input");
+      },
+      keyup(){
+        console.log("ketup");
+      },
+      keydown(){
+        console.log("keydown");
+      },
+      keypress(){
+        console.log("keypress");
+      }
+    }
+  })
+</script>
+</body>
+</html>

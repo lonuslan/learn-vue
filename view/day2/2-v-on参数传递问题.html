@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="app">
+
+  不带参数的效果
+  <hr/>
+  <button @click="btn1">按钮一不带括号</button>
+  <button @click="btn1()">按钮一带括号</button>
+<!--  上面的输出结果为btn1-->
+  <br/>
+  含一个参数但是在调用时分别带参数和不带参数
+  <hr/>
+  <button @click="btn2()">按纽二带参数</button>
+<!--  如果方法需要参数，但是却没有传入参数，那么他的形参为undefined-->
+<!--  输出结果为btn2undefined-->
+  <button @click="btn2(123)">按钮二带参数值</button>
+<!--  输出结果为btn2123-->
+  <button @click="btn2">按钮二不带括号</button>
+<!--  输出结果为mouse event-->
+<!--  当方法中含有参数，但是在调用时没有写括号，那么vue会将浏览器生成的event对象当作参数传入该方法的第一个参数中-->
+  <br/>
+
+  当我们需要方法中传入浏览器的event对象和其他参数时
+  <hr/>
+  <button @click="btn3">按钮三不带括号</button>
+<!--  结果为：-->
+<!--  mouse event --------- undefined-->
+<!--  <button @click="btn3(123, event)>按钮三带两个参数 </button>-->
+  <button @click="btn3(123, best)">按钮三带两个参数</button>
+
+<!--  当需要传入event对象时，使用$event-->
+  <button @click="btn3(123, $event)">按钮三传入event</button>
+<!--  结果为： btn3123---------------[object MouseEvent]-->
+</div>
+
+
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      mes: "展示提示",
+      best: '最好的吗'
+    },
+    methods: {
+      btn1(){
+        console.log("btn1");
+      },
+      btn2(event){
+        console.log('btn2' + event);
+      },
+      btn3(event, param){
+        console.log("btn3" + event +'------------' + param);
+      }
+    }
+  })
+</script>
+</body>
+</html>

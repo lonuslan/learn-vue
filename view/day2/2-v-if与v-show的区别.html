@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="app">
+  <span v-if="isShow">{{mes}}</span>
+  <span v-show="isShow">{{mes}}</span>
+
+  <hr>
+  当不显示时，v-show只是加了一个style： display: none，但是HTML标签还在
+  而v-if则是直接删除了HTML标签
+  <br>
+  所以在隐藏显示频率较高时，建议使用v-show
+  而在只有一次切换时使用v-if
+  <span v-if="notShow">{{mes}}</span>
+  <span v-show="notShow">{{mes}}</span>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      isShow: true,
+      notShow: false,
+      mes: 'zhanshila'
+    }
+  })
+</script>
+</body>
+</html>

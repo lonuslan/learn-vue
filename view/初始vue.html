@@ -39,7 +39,27 @@
 </div>
 
 <script>
-    //vue中 let 表示变量，const表示常量
+    //在ES6以上，尽量使用let声明变量，因为var修饰的变量没有块级作用域
+    // 例如
+    // {
+    //     var name = 'myname'
+    //     console.log(name);
+    // }
+    // fun: changeName({
+    //     var name = 'abc'
+    // })
+    // name = 'lonuslan'
+    // console.log(name);
+    //vue中 let 表示变量，const表示常量(初始化时必须赋值)，且不能被修改
+    //常量的含义是指向的对象不能被修改，但是对象内部的值还是可以被修改
+    //示例如下
+    const obj = {
+        name: 'lonus',
+        age: 24,
+        gender: 'male'
+    }
+    obj.name = 'lonuslan'
+
     //console中可以根据 vue.message = '***' 实时修改对应的值
     const vue = new Vue({
         el: '.app', //获取定义的元素标签，定位到该元素。

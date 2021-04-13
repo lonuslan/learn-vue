@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div class="app">
+
+  传统写法
+  <hr>
+  <span v-if="score >= 90">优秀</span>
+  <span v-else-if="score >= 80">良好</span>
+  <span v-else-if="score >= 60">及格</span>
+  <span v-else>不及格</span>
+  <hr>
+  优化写法
+  <hr>
+  <span>{{getScore()}}</span>
+
+  <hr>
+  v-if 控制元素是否显示，会在虚拟 dom 里面保留副本，实际时根据判断值是否显示在最终的页面内
+  <hr>
+
+  <span v-if="isShow"> 这时的isShow为true</span>
+  <span v-else="isShow"> 这时的isShow为false</span>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      score: 83,
+      isShow: true
+    },
+    methods: {
+      getScore(){
+        if (this.score >= 90){
+          return "优秀"
+        } else if (this.score >= 80){
+          return "良好"
+        } else if (this.score >= 60){
+          return "及格"
+        } else {
+          return "不及格"
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
