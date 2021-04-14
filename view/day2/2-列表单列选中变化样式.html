@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
 </head>
 <body>
-$END$
+
+<style>
+  .active{
+    color: aquamarine;
+  }
+</style>
+<div class="app">
+
+  <ul>
+    <li :class="{ active : currentIndex === index}" v-for="(item, index) in arr" @click="click(index)">{{item}}</li>
+  </ul>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      arr: ['第一个列表',
+            '第一个列表',
+            '第一个列表',
+            '第一个列表'
+      ],
+      currentIndex: 0
+    },
+    methods: {
+      click(index){
+        this.currentIndex = index
+      }
+    }
+  })
+</script>
+
 </body>
 </html>

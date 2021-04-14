@@ -10,7 +10,15 @@
 
 <div class="app">
 
-
+  遍历数组时绑定 key
+  <br>
+  注意： 绑定 key 时，不能绑定 index, 因为遍历数组时 key 还是会变；
+  <ul>
+    <li v-for="item in info" :key="item">{{item}}</li>
+  </ul>
+  使用 v-for 默认的遍历方式时，若此时在数组的某个位置插入元素，此时执行的操作会打乱后续数组的指针指向问题-类似与数据结构中数组的插入
+  <br>
+  当使用了 :key 属性时候，此时的插入类似于数据结构中链表数据的插入
 
 </div>
 
@@ -19,7 +27,7 @@
   const app = new Vue({
     el: '.app',
     data: {
-
+      info: ['a', 'b', 'c', 'd']
     }
   })
 </script>

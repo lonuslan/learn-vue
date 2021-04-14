@@ -2,9 +2,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Title</title>
 </head>
 <body>
-$END$
+
+
+<div class="app">
+
+  属于响应式的数组方法：<br>
+  push()
+  pop()
+  shift()
+  unshift()
+  splice()
+  sort()
+  reverse()
+  <ul>
+    <li v-for="item in infos">
+      {{item}}
+    </li>
+  </ul>
+
+  在 console 使用 app.infos.push('e') 时，数据会立刻发生变化，这就是相应式的方法 <br>
+  push方法,从数组最后面追加元素,可变参数 ...num <br>
+  <button @click="btn1">按钮1</button>
+  <br>
+  通过index下标改变数组的值，不是响应式 <br>
+  <button @click="btn2">按钮2</button> <br>
+  pop()方法，删除最后的一个元素 <br>
+  <button @click="btn3">按钮3</button> <br>
+  shift()方法，删除数组的第一个元素 <br>
+  <button @click="btn4">按钮4</button> <br>
+  unshift()方法, 在数组的最前面追加元素, 可变参数 <br>
+  <button @click="btn5">按钮5</button> <br>
+  splice()方法：删除/插入/替换元素：<br>
+  spalice(1): 删除第1个元素后的所有元素；a b c d---> a <br>
+  splice(1, 2): 从第1个元素开始，删除其后面连续的2个元素； a b c d----> a d <br>
+  splice(1, 2, 'm', 'n'): 相当于做完 splice(1, 2) 之后，又向后面追加了两个元素； a b c d ---> a m n d <br>
+  splice(1, 0, 'm', 'n'): 相当于做完 （splice(1, 0) -> 从第一个位置后面删除0个元素） 之后，追加了两个元素：a b c d ---> a m n b c d <br>
+  <button @click="btn6">按钮6</button> <br>
+  sort()方法：排序 <br>
+  <button @click="btn7">按钮7</button> <br>
+  reverse()方法：数组内容反转 <br>
+  <button @click="btn8">按钮8</button> <br>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '.app',
+    data: {
+      infos: ['a', 'b', 'c', 'd']
+    },
+    methods: {
+      btn1(){
+        //push方法,从数组最后面追加元素
+        this.infos.push('e')
+      },
+      btn2(){
+        this.infos[1] = 'eee'
+      },
+      btn3(){
+        this.infos.pop()
+      },
+      btn4(){
+        this.infos.shift()
+      },
+      btn5(){
+        this.infos.unshift("aa")
+      },
+      btn6(){
+        // this.infos.splice(1)
+        // this.infos.splice(1, 2)
+        this.infos.splice(1, 2, 'm', 'n')
+        // this.infos.splice(1)
+        // this.infos.splice(1, 0, 'm', 'n')
+      },
+      btn7(){
+        this.infos.sort()
+      },
+      btn8(){
+        this.infos.reverse()
+
+        //使用 Vue 修改对象的方法，也是属于响应式方法
+        Vue.set(this.infos, 0, 'a')
+      },
+    }
+  })
+</script>
 </body>
 </html>
