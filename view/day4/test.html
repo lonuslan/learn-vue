@@ -1,10 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<button class="test" onclick="test()">点击获取图片</button>
+<div id="showImg" style="margin: 0 auto">
+  <img id = "bingImg" width="800px" height="600px" src=""/>
+</div>
+<script>
+  var bingImg = document.getElementById("bingImg")
+  const baseUrl = "https://imgbing.lonuslan.com/"
+  // 图片的链接格式为：https://imgbing.lonuslan.com/20210602
+  var startDate = new Date("2021/4/11")
+  // 设置随机日期时间常量
+  const randomdate = randomDate(startDate)
+
+  // let year = randomdate.getFullYear()
+  // let month = randomdate.getMonth() + 1 < 10 ? "0" + (randomdate.getMonth() + 1) : randomdate.getMonth() + 1
+  // let day = randomdate.getDate() < 10 ? "0" + randomdate.getDate().toString() : randomdate.getDate()
+
+  function getUrl(base, prefix){
+      return base + prefix
+  }
+  function getTheNextPrefix(randomdate, sum){
+      var dd = new Date(randomdate);
+      dd.setDate(dd.getDate() + sum);
+      //获取年数
+      var y = dd.getFullYear();
+      //获取标准格式的月份数
+      var m = dd.getMonth() + 1 < 10 ? "0" + (dd.getMonth() + 1) : dd.getMonth() + 1;
+      //获取标准格式的天数
+      var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate();
+      return "" + y + m + d
+  }
+  // 返回从开始时间到现在的某一天
+  function randomDate(startDate){
+      return new Date(startDate.valueOf() + Math.floor(Math.random() * (new Date().valueOf() - startDate.valueOf())))
+  }
+  let sum = 0
+  function test() {
+      console.log("获取图片地址")
+      console.log("开始日期为：" + startDate)
+      console.log("随机日期为：" + randomdate)
+      prefix = getTheNextPrefix(randomdate, sum)
+      bingImg.src = getUrl(baseUrl, prefix)
+      sum = sum + 1
+  }
+</script>
 </body>
 </html>
